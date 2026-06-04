@@ -212,14 +212,14 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = "kastrov/devopsexamapp:latest"
+        DOCKER_IMAGE = "ranjuranjith/devopsexamapp:latest"
         SCANNER_HOME = tool 'sonar-scanner'
     }
 
     stages {
         stage('Git Checkout') {
             steps {
-                git url: 'https://github.com/KastroVKiran/devops-exam-app.git', 
+                git url: 'https://github.com/ranjith2695/devops-exam-app.git', 
                     branch: 'master'
             }
         }
@@ -240,7 +240,7 @@ pipeline {
                     -Dsonar.sources=. \
                     -Dsonar.language=py \
                     -Dsonar.python.version=3 \
-                    -Dsonar.host.url=http://localhost:9000
+                    -Dsonar.host.url=http://3.89.231.128/:9000
                     """
                 }
             }
@@ -311,7 +311,7 @@ pipeline {
                 echo "=== Container Status ==="
                 docker compose ps -a
                 echo "=== Testing Flask Endpoint ==="
-                curl -I http://localhost:5000 || true
+                curl -I http://3.89.231.128:5000 || true
                 '''
             }
         }
